@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html><head><meta charset='UTF-8'>
+<title>Documento Generado</title>
+<style>
+body { font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; line-height: 1.6; }
+h1, h2, h3 { color: #2c3e50; border-bottom: 1px solid #eee; }
+code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; }
+.math-display { text-align: center; margin: 20px 0; font-size: 1.2em; }
+</style>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</head><body>
+<h1>La Hipótesis de Riemann</h1>
+<br>
+<br>
+La <strong>Hipótesis de Riemann</strong>, conjeturada por *Bernhard Riemann* en 1859, es considerada por muchos como el problema sin resolver más importante de las matemáticas puras. Está íntimamente relacionada con la distribución de los <strong>números primos</strong>.<br>
+<br>
+<h2>1. Definición de la Función Zeta</h2>
+<br>
+Todo comienza con la función zeta de Riemann, <span class='math-inline'>$\zeta(s)$</span>, definida para un número complejo <span class='math-inline'>$s$</span> con parte real mayor que 1 por la serie de Dirichlet:<br>
+<br>
+<div class='math-display'>$$\zeta(s) = \sum_{n=1}^{\infty} \frac{1}{n^s} = \frac{1}{1^s} + \frac{1}{2^s} + \frac{1}{3^s} + \cdots$$</div>
+<br>
+<br>
+<h2>2. El Producto de Euler</h2>
+<br>
+Una de las propiedades más bellas (que seguro le gusta a tu profesor) es la conexión con los primos. Leonhard Euler demostró que esta suma es igual a un producto infinito sobre todos los números primos <span class='math-inline'>$p$</span>:<br>
+<br>
+<div class='math-display'>$$\zeta(s) = \prod_{p \in \mathbb{P}} \frac{1}{1 - p^{-s}}$$</div>
+<br>
+<br>
+Esto confirma que el comportamiento de <span class='math-inline'>$\zeta(s)$</span> codifica información sobre la aleatoriedad de los primos.<br>
+<br>
+<h2>3. La Ecuación Funcional</h2>
+<br>
+La función se puede extender analíticamente a todo el plano complejo (excepto en <span class='math-inline'>$s=1$</span>) satisfaciendo la siguiente ecuación funcional, que relaciona el valor en <span class='math-inline'>$s$</span> con <span class='math-inline'>$1-s$</span>:<br>
+<br>
+<div class='math-display'>$$\zeta(s) = 2^s \pi^{s-1} \sin\left(\frac{\pi s}{2}\right) \Gamma(1-s) \zeta(1-s)$$</div>
+<br>
+<br>
+Donde <span class='math-inline'>$\Gamma$</span> es la función Gamma (la extensión del factorial).<br>
+<br>
+<h2>4. El Enunciado del Problema</h2>
+<br>
+La función zeta tiene ceros "triviales" en los enteros pares negativos (<span class='math-inline'>$-2, -4, -6, \dots$</span>). La hipótesis trata sobre los ceros <strong>no triviales</strong>.<br>
+<br>
+Riemann conjeturó que:<br>
+<br>
+> La parte real de todo cero no trivial de la función zeta es <span class='math-inline'>$\frac{1}{2}$</span>.<br>
+<br>
+Es decir, si <span class='math-inline'>$\zeta(s) = 0$</span> y <span class='math-inline'>$s$</span> no es un entero par negativo, entonces:<br>
+<br>
+<div class='math-display'>$$\text{Re}(s) = \frac{1}{2}$$</div>
+<br>
+<br>
+<h2>Consecuencias</h2>
+<br>
+Si esta hipótesis se demostrara cierta (hay un premio de <a href='https://www.claymath.org/millennium-problems'>1 millón de dólares</a> del Instituto Clay), implicaría:<br>
+<ul>
+  <li>Una cota muy precisa para el error en el Teorema de los Números Primos: $|\pi(x) - \text{Li}(x)| < \frac{1}{8\pi} \sqrt{x} \ln(x)$.</li>
+  <li>Mejoras en algoritmos de criptografía.</li>
+  <li>Un avance monumental en la Teoría de Números.</li>
+<em>Este documento ha sido generado automáticamente procesando Markdown y LaTeX.</em></ul>
+</body></html>

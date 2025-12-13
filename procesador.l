@@ -122,8 +122,6 @@ LINK            \[([^]]+)\]\(([^)]+)\)
 /* SECCIÓN 3: PROCEDIMIENTOS DE USUARIO 
 */
 int main(int argc, char *argv[]) {
-    
-    // 1. Cabecera HTML con estilo CSS básico
     cout << "<!DOCTYPE html>" << endl;
     cout << "<html><head><meta charset='UTF-8'>" << endl;
     cout << "<title>Documento Generado</title>" << endl;
@@ -134,7 +132,7 @@ int main(int argc, char *argv[]) {
     cout << ".math-display { text-align: center; margin: 20px 0; font-size: 1.2em; }" << endl;
     cout << "</style>" << endl;
     
-    // --- ESTA ES LA PARTE NUEVA QUE ARREGLA EL MATHJAX INLINE ---
+    // --- Para las formulas ---
     cout << "<script type=\"text/x-mathjax-config\">" << endl;
     cout << "  MathJax.Hub.Config({" << endl;
     cout << "    tex2jax: {" << endl;
@@ -151,11 +149,9 @@ int main(int argc, char *argv[]) {
     cout << "</script>" << endl;
     cout << "</head><body>" << endl;
 
-    // 2. Ejecutar el análisis léxico
     FlexLexer* lexer = new yyFlexLexer;
     lexer->yylex();
 
-    // 3. Cerrar etiquetas HTML
     if (en_lista) cout << "</ul>" << endl;
     cout << "</body></html>" << endl;
 

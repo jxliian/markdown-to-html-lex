@@ -1,77 +1,93 @@
-# LexDown: Markdown to HTML Converter using LEX
+# 📝 Flex Markdown & LaTeX Parser
 
-**A lexical analyzer based on LEX to process Markdown text and generate valid HTML code.**
+![C++](https://img.shields.io/badge/C++-Solutions-blue.svg?style=flat&logo=c%2B%2B)
+![Flex](https://img.shields.io/badge/Tool-Flex-green.svg)
+![Status](https://img.shields.io/badge/Status-Completed-success)
+![University](https://img.shields.io/badge/UGR-Modelos_de_Computación-red)
 
-This project is part of the **Language Processors** course (Computer Science + Business Ad.) at the **University of Granada (UGR)**.
+Un procesador de textos avanzado construido con **Flex** y **C++**. Este escáner léxico convierte documentos escritos en **Markdown** (con soporte para ecuaciones **LaTeX**) en páginas **HTML5** modernas, estilizadas y responsivas.
 
-## 👥 Team Members
-* David Bacas Posadas
-* Julián Carrión Tovar
-* Jose Ángel Carretero Montes
+Este proyecto fue desarrollado como parte de la asignatura *Modelos de Computación* de la Universidad de Granada.
 
-## 🎯 Project Scope
-The goal is to build a tool that recognizes specific Markdown patterns and translates them into HTML tags. As defined in our project proposal, the scope includes:
+## ✨ Características
 
-1.  **Headers:** Converting `#`, `##`, `###` into `<h1>`, `<h2>`, etc.
-2.  **Text Styling:** Detecting bold text (`**text**`) and converting it to `<b>` or `<strong>`.
-3.  **Lists:** Detecting hyphens (`-`) at the start of a line to generate unordered lists (`<ul>`, `<li>`).
-4.  **Links:** Converting `[text](url)` format into `<a href="...">` tags.
+Este no es un conversor estándar. Incluye características avanzadas de procesamiento de lenguaje:
 
-## 🛠️ Tech Stack
-* **Flex (Fast Lexical Analyzer Generator):** For defining lexical patterns and tokens.
-* **C:** Host language for logic and state management.
-* **GCC & Make:** For compilation and build automation.
+### 1. 📐 Soporte Matemático (LaTeX)
+Integra **MathJax** para renderizar ecuaciones complejas.
+- **Inline:** Detecta `$E=mc^2$` dentro del texto.
+- **Display Block:** Detecta bloques `$$...$$` y los centra con estilo.
 
-## 🗺️ Development Roadmap
+### 2. 💻 Resaltado de Sintaxis (Syntax Highlighting)
+Utiliza **Start Conditions (`%x`)** de Flex para cambiar de autómata al detectar bloques de código C++.
+- Colorea palabras clave (`int`, `return`, `if`), cadenas y comentarios.
+- Mantiene el formato pre-procesado.
 
-Based on the complexity of parsing inline elements (like bold text) alongside block elements, the development is divided into 5 phases:
 
-### Phase 1: Environment Setup
-- [ ] Initialize Git repository.
-- [ ] Create `Makefile` for automated compilation (Flex + GCC).
-- [ ] Implement a basic `.l` file (passthrough) to verify the build pipeline.
+## 🛠️ Tecnologías y Teoría
 
-### Phase 2: Block Elements (Line-based)
-*Focus on patterns that usually appear at the start of a line.*
-- [ ] Implement **Headers** parsing (`#`).
-- [ ] Implement **Lists** logic (`-`).
-    - *Challenge:* We need to manage state variables in C to correctly open `<ul>` before the first item and close `</ul>` when the list ends.
+Este proyecto aplica la teoría de **Autómatas Finitos y Expresiones Regulares**.
 
-### Phase 3: Inline Elements & State Management
-*Addressing the complexity of mixing text and tags (as advised by the professor).*
-- [ ] Implement **Links** parsing (`[ ](...)`).
-- [ ] Implement **Bold** text (`**...**`).
-    - *Challenge:* Use LEX **Start Conditions** (`%x state`) to distinguish between asterisks used for formatting and asterisks used as text.
+* [cite_start]**Flex (Fast Lexical Analyzer Generator):** Herramienta que genera un escáner en C++ a partir de reglas léxicas[cite: 14].
+* **Expresiones Regulares:** Se definen patrones formales para cada token (encabezados, listas, negritas, etc.).
+* **Autómatas Finitos Deterministas (AFD):** Flex compila estas expresiones en un AFD que procesa el texto de entrada eficientemente.
 
-### Phase 4: Edge Cases & "Stress Testing"
-*Testing the limits of the parser.*
-- [ ] Create `test_cases.md` containing:
-    - Nested styles (e.g., bold inside a list).
-    - Malformed tags.
-    - Special characters.
-- [ ] Refine regex rules to handle or ignore these cases gracefully.
+## 🚀 Instalación y Uso
 
-### Phase 5: Documentation & Limitations
-- [ ] Final code cleanup and commenting.
-- [ ] **Report writing:** Specifically documenting the **limitations** of the parser (e.g., cases where the grammar might be ambiguous), as requested by the professor.
+### Prerrequisitos
+Necesitas tener instalado `flex` y un compilador de C++ (`g++`).
 
-## 📦 How to Build and Run
+```bash
+# En Ubuntu/Debian
+sudo apt-get install flex g++ make
 
-1.  **Clone the repository:**
-    ```bash
-    git clone url
-    cd lex-markdown-parser
-    ```
+```
 
-2.  **Compile:**
-    ```bash
-    make
-    ```
+### Compilación
 
-3.  **Run with an input file:**
-    ```bash
-    ./parser < input.md > output.html
-    ```
+Hemos incluido un `makefile` para facilitar la tarea. Simplemente ejecuta:
+
+```bash
+make
+
+```
+
+Esto generará el ejecutable `procesador`.
+
+### Ejecución
+
+Para convertir un archivo Markdown a HTML:
+
+```bash
+./procesador < prueba.md > index.html
+
+```
+
+O utiliza el comando de prueba automático:
+
+```bash
+make test
+
+```
+
+Esto procesará `prueba.md` y generará `salida.html` automáticamente.
 
 ---
-*University of Granada - 2025*
+
+## 📂 Estructura del Proyecto
+
+* `procesador.l`: Archivo fuente de Flex. Contiene las definiciones (`%x`), reglas regex y el código C++ inyector.
+* `makefile`: Script de automatización para compilar y limpiar.
+* `prueba.md`: Archivo de entrada con ejemplos complejos (Hipótesis de Riemann, Código C++, etc.).
+* `lex.yy.cc`: (Generado) Código fuente en C++ creado por Flex.
+
+---
+
+
+
+## 👥 Autores
+
+* **[José Ángel Carretero Montes]**
+* **[David Bacas Posadas]**
+* **[Julián Carrion Tovar]**
+

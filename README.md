@@ -9,7 +9,7 @@ Un procesador de textos avanzado construido con **Flex** y **C++**. Este escáne
 
 Este proyecto fue desarrollado como parte de la asignatura *Modelos de Computación* de la Universidad de Granada.
 
-## ✨ Características
+## ✨ Características principales
 
 Este no es un conversor estándar. Incluye características avanzadas de procesamiento de lenguaje:
 

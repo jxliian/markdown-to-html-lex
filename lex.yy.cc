@@ -1,5 +1,5 @@
 
-#line 2 "lex.yy.cc"
+#line 3 "lex.yy.cc"
 
 #define  YY_INT_ALIGNED short int
 
@@ -440,7 +440,7 @@ void check_lista() {
         en_lista = false;
     }
 }
-#line 443 "lex.yy.cc"
+#line 444 "lex.yy.cc"
 /* Opciones de flex: noyywrap para leer un solo fichero */
 /* DEFINICIONES (Alias de Regex) */
 /* Detecta ecuaciones tipo $$...$$ */
@@ -453,7 +453,7 @@ void check_lista() {
 /* SECCIÓN 2: REGLAS 
    Formato: Patrón { Acción en C++ }
 */
-#line 456 "lex.yy.cc"
+#line 457 "lex.yy.cc"
 
 #define INITIAL 0
 
@@ -591,7 +591,7 @@ YY_DECL
 #line 45 "procesador.l"
 
 
-#line 594 "lex.yy.cc"
+#line 595 "lex.yy.cc"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -759,7 +759,7 @@ YY_RULE_SETUP
 #line 120 "procesador.l"
 ECHO;
 	YY_BREAK
-#line 762 "lex.yy.cc"
+#line 763 "lex.yy.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1731,8 +1731,6 @@ void yyfree (void * ptr )
 /* SECCIÓN 3: PROCEDIMIENTOS DE USUARIO 
 */
 int main(int argc, char *argv[]) {
-    
-    // 1. Cabecera HTML con estilo CSS básico
     cout << "<!DOCTYPE html>" << endl;
     cout << "<html><head><meta charset='UTF-8'>" << endl;
     cout << "<title>Documento Generado</title>" << endl;
@@ -1743,7 +1741,7 @@ int main(int argc, char *argv[]) {
     cout << ".math-display { text-align: center; margin: 20px 0; font-size: 1.2em; }" << endl;
     cout << "</style>" << endl;
     
-    // --- ESTA ES LA PARTE NUEVA QUE ARREGLA EL MATHJAX INLINE ---
+    // --- Para las formulas ---
     cout << "<script type=\"text/x-mathjax-config\">" << endl;
     cout << "  MathJax.Hub.Config({" << endl;
     cout << "    tex2jax: {" << endl;
@@ -1760,11 +1758,9 @@ int main(int argc, char *argv[]) {
     cout << "</script>" << endl;
     cout << "</head><body>" << endl;
 
-    // 2. Ejecutar el análisis léxico
     FlexLexer* lexer = new yyFlexLexer;
     lexer->yylex();
 
-    // 3. Cerrar etiquetas HTML
     if (en_lista) cout << "</ul>" << endl;
     cout << "</body></html>" << endl;
 

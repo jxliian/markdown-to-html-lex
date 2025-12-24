@@ -1,41 +1,93 @@
-# La Hipótesis de Riemann
+# 📝 Flex Markdown & LaTeX Parser
 
-La **Hipótesis de Riemann**, conjeturada por *Bernhard Riemann* en 1859, es considerada por muchos como el problema sin resolver más importante de las matemáticas puras. Está íntimamente relacionada con la distribución de los **números primos**.
+![C++](https://img.shields.io/badge/C++-Solutions-blue.svg?style=flat&logo=c%2B%2B)
+![Flex](https://img.shields.io/badge/Tool-Flex-green.svg)
+![Status](https://img.shields.io/badge/Status-Completed-success)
+![University](https://img.shields.io/badge/UGR-Modelos_de_Computación-red)
 
-## 1. Definición de la Función Zeta
-Todo comienza con la función zeta de Riemann, $\zeta(s)$, definida para un número complejo $s$ con parte real mayor que 1 por la serie de Dirichlet:
+Un procesador de textos avanzado construido con **Flex** y **C++**. Este escáner léxico convierte documentos escritos en **Markdown** (con soporte para ecuaciones **LaTeX**) en páginas **HTML5** modernas, estilizadas y responsivas.
 
-$$\zeta(s) = \sum_{n=1}^{\infty} \frac{1}{n^s} = \frac{1}{1^s} + \frac{1}{2^s} + \frac{1}{3^s} + \cdots$$
+Este proyecto fue desarrollado como parte de la asignatura *Modelos de Computación* de la Universidad de Granada.
 
-## 2. El Producto de Euler
-Una de las propiedades más bellas (que seguro le gusta a tu profesor) es la conexión con los primos. Leonhard Euler demostró que esta suma es igual a un producto infinito sobre todos los números primos $p$:
+## ✨ Características
 
-$$\zeta(s) = \prod_{p \in \mathbb{P}} \frac{1}{1 - p^{-s}}$$
+Este no es un conversor estándar. Incluye características avanzadas de procesamiento de lenguaje:
 
-Esto confirma que el comportamiento de $\zeta(s)$ codifica información sobre la aleatoriedad de los primos.
+### 1. 📐 Soporte Matemático (LaTeX)
+Integra **MathJax** para renderizar ecuaciones complejas.
+- **Inline:** Detecta `$E=mc^2$` dentro del texto.
+- **Display Block:** Detecta bloques `$$...$$` y los centra con estilo.
 
-## 3. La Ecuación Funcional
-La función se puede extender analíticamente a todo el plano complejo (excepto en $s=1$) satisfaciendo la siguiente ecuación funcional, que relaciona el valor en $s$ con $1-s$:
+### 2. 💻 Resaltado de Sintaxis (Syntax Highlighting)
+Utiliza **Start Conditions (`%x`)** de Flex para cambiar de autómata al detectar bloques de código C++.
+- Colorea palabras clave (`int`, `return`, `if`), cadenas y comentarios.
+- Mantiene el formato pre-procesado.
 
-$$\zeta(s) = 2^s \pi^{s-1} \sin\left(\frac{\pi s}{2}\right) \Gamma(1-s) \zeta(1-s)$$
 
-Donde $\Gamma$ es la función Gamma (la extensión del factorial).
+## 🛠️ Tecnologías y Teoría
 
-## 4. El Enunciado del Problema
-La función zeta tiene ceros "triviales" en los enteros pares negativos ($-2, -4, -6, \dots$). La hipótesis trata sobre los ceros **no triviales**.
+Este proyecto aplica la teoría de **Autómatas Finitos y Expresiones Regulares**.
 
-Riemann conjeturó que:
+* [cite_start]**Flex (Fast Lexical Analyzer Generator):** Herramienta que genera un escáner en C++ a partir de reglas léxicas[cite: 14].
+* **Expresiones Regulares:** Se definen patrones formales para cada token (encabezados, listas, negritas, etc.).
+* **Autómatas Finitos Deterministas (AFD):** Flex compila estas expresiones en un AFD que procesa el texto de entrada eficientemente.
 
-> La parte real de todo cero no trivial de la función zeta es $\frac{1}{2}$.
+## 🚀 Instalación y Uso
 
-Es decir, si $\zeta(s) = 0$ y $s$ no es un entero par negativo, entonces:
+### Prerrequisitos
+Necesitas tener instalado `flex` y un compilador de C++ (`g++`).
 
-$$\text{Re}(s) = \frac{1}{2}$$
+```bash
+# En Ubuntu/Debian
+sudo apt-get install flex g++ make
 
-## Consecuencias
-Si esta hipótesis se demostrara cierta (hay un premio de [1 millón de dólares](https://www.claymath.org/millennium-problems) del Instituto Clay), implicaría:
-- Una cota muy precisa para el error en el Teorema de los Números Primos: $|\pi(x) - \text{Li}(x)| < \frac{1}{8\pi} \sqrt{x} \ln(x)$.
-- Mejoras en algoritmos de criptografía.
-- Un avance monumental en la Teoría de Números.
+```
 
-_Este documento ha sido generado automáticamente procesando Markdown y LaTeX._
+### Compilación
+
+Hemos incluido un `makefile` para facilitar la tarea. Simplemente ejecuta:
+
+```bash
+make
+
+```
+
+Esto generará el ejecutable `procesador`.
+
+### Ejecución
+
+Para convertir un archivo Markdown a HTML:
+
+```bash
+./procesador < prueba.md > index.html
+
+```
+
+O utiliza el comando de prueba automático:
+
+```bash
+make test
+
+```
+
+Esto procesará `prueba.md` y generará `salida.html` automáticamente.
+
+---
+
+## 📂 Estructura del Proyecto
+
+* `procesador.l`: Archivo fuente de Flex. Contiene las definiciones (`%x`), reglas regex y el código C++ inyector.
+* `makefile`: Script de automatización para compilar y limpiar.
+* `prueba.md`: Archivo de entrada con ejemplos complejos (Hipótesis de Riemann, Código C++, etc.).
+* `lex.yy.cc`: (Generado) Código fuente en C++ creado por Flex.
+
+---
+
+
+
+## 👥 Autores
+
+* **[José Ángel Carretero Montes]**
+* **[David Bacas Posadas]**
+* **[Julián Carrion Tovar]**
+
